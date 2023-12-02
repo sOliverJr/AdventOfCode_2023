@@ -1,2 +1,2 @@
-from Day01.day01_part2 import *
+from Day02.day02_part2 import *
 
