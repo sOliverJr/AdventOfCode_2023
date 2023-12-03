@@ -1,17 +1,17 @@
 import datetime
-import os
+import importlib
 
 day = datetime.datetime.today().day
 
 if day < 10:
-    file_path = os.getcwd() + '/Day0' + str(day) + '/day0' + str(day)
+    path = 'Day0' + str(day) + '.day0' + str(day)
 else:
-    file_path = os.getcwd() + '/Day0' + str(day) + '/day0' + str(day)
+    path = 'Day' + str(day) + '.day' + str(day)
 
 print('--- Day ' + str(day) + ' ---')
 
 print("Part 1: ", end="")
-os.system('python3 ' + file_path + '_part1.py')
+importlib.import_module(path + '_part1')
 
 print("Part 2: ", end="")
-os.system('python3 ' + file_path + '_part2.py')
+importlib.import_module(path + '_part2')
