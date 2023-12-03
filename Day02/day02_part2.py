@@ -1,5 +1,5 @@
 
-file_name = 'Day02/input_day02.txt'
+file_name = 'Day02/input_day03.txt'
 input_array = []
 file = open(file_name, 'r')
 for line in file:
