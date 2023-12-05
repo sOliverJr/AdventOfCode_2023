@@ -1,4 +1,20 @@
 
+class Map:
+    def __init__(self, destination_start, source_start, range_length):
+        self.destination_start = destination_start
+        self.source_start = source_start
+        self.range_length = range_length
+        self.source_end = self.source_start + self.range_length -1
+
+    def calculate_new_value_from_instructions(self, position):
+        if self.source_start <= position <= self.source_end:
+            offset = position - self.source_start
+            new_value = self.destination_start + offset
+            return True, new_value
+        else:
+            return False, position
+
+
 file_name = 'Day05/input_day05.txt'
 input_array = []
 file = open(file_name, 'r')
@@ -16,25 +32,23 @@ del input_array[0:2]
 
 def map_seeds_to_new_position():
     global seeds
-    global mapping_arr
+    global map_arr
     for seed in seeds:
-        for mapping in mapping_arr:
-            if mapping[0] <= seeds[seed] <= mapping[1]:
-                offset = seeds[seed] - mapping[0]
-                seeds[seed] = mapping[2] + offset
+        for map in map_arr:
+            new_value_bool, seeds[seed] = map.calculate_new_value_from_instructions(seeds[seed])
+            if new_value_bool:
                 break
 
-
 # ['source_start', 'source_end', 'destination_start']
-mapping_arr = []
+map_arr = []
 for i, line in enumerate(input_array):
     if len(line) == 0 or i+1 == len(input_array):
         map_seeds_to_new_position()
-        mapping_arr = []
+        map_arr = []
         continue
     else:
         line_values = line.split(' ')
-        mapping_arr.append([int(line_values[1]), ((int(line_values[1]) + int(line_values[2]))-1), int(line_values[0])])
+        map_arr.append(Map(int(line_values[0]), int(line_values[1]), int(line_values[2])))
 
 for seed_value in seeds.values():
     if seed_value < output:
