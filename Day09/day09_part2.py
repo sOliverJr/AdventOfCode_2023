@@ -14,7 +14,8 @@ for line in input_array:
             line_arr.append(-int(splitted_string[1:]))
         else:
             line_arr.append(int(splitted_string))
-    input_data.append(line_arr)
+    # Reverse
+    input_data.append(line_arr[::-1])
 
 
 # -------- calculate new value -------- #
