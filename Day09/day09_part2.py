@@ -14,7 +14,7 @@ for line in input_array:
             line_arr.append(-int(splitted_string[1:]))
         else:
             line_arr.append(int(splitted_string))
-    # Reverse
+    # Reverse input_array in order to get estimation on data in the past
     input_data.append(line_arr[::-1])
 
 
