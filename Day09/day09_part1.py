@@ -20,23 +20,19 @@ for line in input_array:
 # -------- calculate new value -------- #
 
 def get_new_value_of_line(line: list):
+    if line.count(0) == len(line):
+        return 0
+
     differences_between_each_step = []
     for i in range(len(line)-1):
         difference = line[i+1] - line[i]
         differences_between_each_step.append(difference)
 
-    # If every value is '0'
-    length_of_new_array = len(differences_between_each_step)
-    if differences_between_each_step.count(0) == length_of_new_array:
-        return line[len(line) - 1]
-    else:
-        new_value = line[len(line) - 1] + get_new_value_of_line(differences_between_each_step)
-        return new_value
+    new_value = line[len(line) - 1] + get_new_value_of_line(differences_between_each_step)
+    return new_value
 
 
 output = 0
 
 for line in input_data:
     output += get_new_value_of_line(line)
-
-print(output)
